@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--font-body: 'Urbanist', sans-serif;
+	--font-heading: 'Urbanist', sans-serif;
+}
+
+body {
+	@apply bg-light font-default;
+	@apply antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		/* Prevent orphans and widows */
+		orphans: 2;
+		widows: 2;
+
+		/* Try to keep words together when possible */
+		word-break: normal;
+		overflow-wrap: break-word;
+
+		/* Subtle improvement for line breaks */
+		text-wrap: pretty; /* Modern browsers only */
+	}
+
+	h1 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(2rem, 7vw, 3rem);
+		font-style: normal;
+		font-weight: 600;
+		line-height: 120%;
+	}
+
+	h2 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 8vw, 3.5rem);
+		font-style: normal;
+		font-weight: 600;
+		line-height: 120%;
+	}
+
+	h3 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(2rem, 7vw, 3rem);
+		font-style: normal;
+		font-weight: 600;
+		line-height: 120%;
+	}
+
+	h4 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(1.5rem, 5vw, 2rem);
+		font-style: normal;
+		font-weight: 500;
+		line-height: 120%;
+	}
+
+	h5 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(1.5rem, 5vw, 2rem);
+		font-style: normal;
+		font-weight: 600;
+		line-height: 120%;
+	}
+
+	h6 {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+	}
+
+	.text-paragraph-lg {
+		color: #1d1e1f;
+		font-family: var(--font-heading);
+		font-size: clamp(1.1rem, 3vw, 1.4rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%;
+	}
+
+
+
+	.text-paragraph-sm {
+		color: #1d1e1f;
+		font-family: var(--font-heading);
+		font-size: clamp(0.999rem, 2vw, 1.25rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%;
+	}
+
+	.text-overline {
+		color: #182e55;
+		font-family: var(--font-heading);
+		font-size: clamp(0.875rem, 1.5vw, 1rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 140%;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+
+	.text-caption {
+		color: #1d1e1f;
+		font-family: var(--font-heading);
+		font-size: clamp(0.85rem, 1.25vw, 0.975rem);
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%;
+	}
+
+	.text-button {
+		color: #802a00;
+		font-family: var(--font-heading);
+		font-size: clamp(1rem, 1.5vw, 1.25rem); /* ~16px min, 20px max */
+		font-style: normal;
+		font-weight: 600;
+		line-height: 1.05;
+	}
+}
+
+html {
+	@apply scroll-smooth;
+}
+
+.container {
+	@apply max-w-[85rem] 3xl:max-w-[95rem] mx-auto px-0.5
+}
+
+.dot-bg {
+	@apply bg-[radial-gradient(#BFBBAA_1px,_transparent_0px)] bg-[length:16px_16px];
+}
+.form-input {
+	@apply w-full rounded bg-white  px-1.5 py-1 text-paragraph-lg text-dark placeholder:text-yellow-dark/75 focus:outline-none focus:ring-0 focus:ring-primary/20 transition-shadow;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}
+
+.no-scroll {
+	overflow: hidden !important;
+	height: 100% !important;
+}
