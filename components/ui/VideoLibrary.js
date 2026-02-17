@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import TreeRingCenterLeft from '../svgs/TreeRingCenterLeft';
+import TreeRingTopRight from '../svgs/TreeRingTopRight';
 
 const getYouTubeId = (url) => new URL(url).searchParams.get('v');
 
@@ -49,42 +51,51 @@ const VideoLibrary = ({ data }) => {
 				))}
 			</div>
 
-			{/* Video */}
-			<div
-				className={`relative w-full aspect-video rounded overflow-hidden transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
-			>
-				{isPlaying ? (
-					<iframe
-						src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-						allowFullScreen
-						className='w-full h-full'
-					/>
-				) : (
-					<button
-						onClick={() => setIsPlaying(true)}
-						className='relative w-full h-full group'
-					>
-						<Image
-							src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-							alt={data[activeIndex].title}
-							fill
-							className='object-cover'
+			{/* Video with tree ring decorations */}
+			<div className='relative'>
+				{/* Tree Ring - Top Right */}
+				<TreeRingTopRight className='absolute -top-[12%] -right-[7%] w-[40%] max-w-[380px] pointer-events-none z-0 hidden md:block' />
+
+				{/* Tree Ring - Center Left */}
+				<TreeRingCenterLeft className='absolute top-1/2 -translate-y-1/2 -left-[8%] w-[42%] max-w-[400px] pointer-events-none z-0 hidden md:block' />
+
+				{/* Video Player */}
+				<div
+					className={`relative w-full aspect-video rounded overflow-hidden transition-opacity duration-300 z-10 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
+				>
+					{isPlaying ? (
+						<iframe
+							src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+							allowFullScreen
+							className='w-full h-full'
 						/>
-						{/* Play Button */}
-						<div className='absolute inset-0 flex items-center justify-center'>
-							<div className='size-[40px] lg:size-[48px] bg-yellow-light rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors shadow-lifted shadow-yellow-dark/75'>
-								<svg
-									viewBox='0 0 24 24'
-									fill='white'
-									className='size-2 lg:size-3'
-								>
-									<path d='M8 5v14l11-7z' />
-								</svg>
+					) : (
+						<button
+							onClick={() => setIsPlaying(true)}
+							className='relative w-full h-full group'
+						>
+							<Image
+								src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+								alt={data[activeIndex].title}
+								fill
+								className='object-cover'
+							/>
+							{/* Play Button */}
+							<div className='absolute inset-0 flex items-center justify-center'>
+								<div className='size-[40px] lg:size-[48px] bg-yellow-light rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors shadow-lifted shadow-yellow-dark/75'>
+									<svg
+										viewBox='0 0 24 24'
+										fill='white'
+										className='size-2 lg:size-3'
+									>
+										<path d='M8 5v14l11-7z' />
+									</svg>
+								</div>
 							</div>
-						</div>
-					</button>
-				)}
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	);

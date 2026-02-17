@@ -7,7 +7,7 @@ import { navigationLinks } from '@/data/navigationLinks';
 const NavigationContainer = async () => {
 
 	const data = await f(Q);
-	console.log(data)
+
 	return (
 		<nav className='container py-1.25 lg:py-1.5 3xl:py-3 px-0.5'>
 			<MobileNavbar data={data} />

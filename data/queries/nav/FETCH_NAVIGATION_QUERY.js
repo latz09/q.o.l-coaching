@@ -11,6 +11,17 @@ export const FETCH_NAVIGATION_QUERY = `
       hotspot,
       crop
     },
+    mobileMenuLogo {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip
+        }
+      },
+      hotspot,
+      crop
+    },
     navLinks[] {
       label,
       anchor

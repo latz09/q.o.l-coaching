@@ -16,8 +16,8 @@ const Footer = ({ data }) => {
 	}, [tagline, location]);
 
 	return (
-		<div className='bg-primary'>
-			<div className='px-1.25 lg:px-0.25 pt-2 lg:pt-4 container grid  place-items-center lg:place-items-start lg:text-start text-center'>
+		<div className='bg-gradient-to-t lg:bg-gradient-to-r from-primary via-primary/95 to-primary/90'>
+			<div className='px-1.25 lg:px-0.25 pt-4 lg:pt-4 container grid  place-items-center lg:place-items-start lg:text-start text-center'>
 				{logo?.asset?.url && (
 					<Image
 						src={logo.asset.url}
@@ -40,7 +40,7 @@ const Footer = ({ data }) => {
 					</p>
 					<div className="grid place-items-center w-full lg:w-auto mt-1.25 lg:mt-0 ">
 						<Link
-							href='/#contact'
+							href='/#contact-form'
 							className='bg-green-light rounded-full px-1.5 py-0.75 text-[1.125rem] font-[600] hover:opacity-90 transition duration-500 hover:text-white'
 						>
 							Contact me

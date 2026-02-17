@@ -7,7 +7,7 @@ import Image from 'next/image';
 import MenuIcon from '../layout/navigation/MenuIcon';
 
 const MobileNavbar = ({ data }) => {
-	const { logoIcon, navLinks = [] } = data;
+	const { logoIcon, mobileMenuLogo, navLinks = [] } = data;
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
 	const toggleNav = () => setIsNavOpen(!isNavOpen);
@@ -67,15 +67,16 @@ const MobileNavbar = ({ data }) => {
 						alt='Q.O.L.C'
 						height={150}
 						width={150}
-					
 						blurDataURL={logoIcon.asset.metadata?.lqip}
 					/>
 				)}
-				<MenuIcon
-					isNavOpen={isNavOpen}
-					toggleNav={toggleNav}
-					variant={isNavOpen ? 'light' : 'default'}
-				/>
+				
+					<MenuIcon
+						isNavOpen={isNavOpen}
+						toggleNav={toggleNav}
+						variant='default'
+					/>
+				
 			</header>
 
 			<AnimatePresence>
@@ -92,7 +93,7 @@ const MobileNavbar = ({ data }) => {
 						/>
 
 						<motion.nav
-							className='fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-blue-dark z-[9999] shadow-xl'
+							className='fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-gradient-to-br from-blue-dark via-blue-dark/95 to-blue-dark/95  z-[9999] shadow-xl'
 							variants={menuVariants}
 							initial='closed'
 							animate='open'
@@ -104,7 +105,21 @@ const MobileNavbar = ({ data }) => {
 						>
 							<div className='flex flex-col h-full px-xs py-xs'>
 								<div className='flex items-center justify-between mb-xl'>
-								
+									{mobileMenuLogo?.asset?.url && (
+										<Image
+											src={mobileMenuLogo.asset.url}
+											alt='Q.O.L.C'
+											height={80}
+											width={80}
+											className='opacity-90'
+											blurDataURL={mobileMenuLogo.asset.metadata?.lqip}
+										/>
+									)}
+									{/* <MenuIcon
+										isNavOpen={isNavOpen}
+										toggleNav={toggleNav}
+										variant='light'
+									/> */}
 								</div>
 
 								<motion.ul
@@ -125,6 +140,9 @@ const MobileNavbar = ({ data }) => {
 										</motion.li>
 									))}
 								</motion.ul>
+								<p className='text-caption text-white text-center mt-auto pb-1'>
+									Woman Veteran owned and operated business
+								</p>
 							</div>
 						</motion.nav>
 					</>

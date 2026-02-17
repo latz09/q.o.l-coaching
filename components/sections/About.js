@@ -6,7 +6,7 @@ const About = ({ data }) => {
 	const { heading, subheading, paragraphs, inclusivityLine } = data;
 
 	return (
-		<SectionContainer className='px-1.25 lg:px-0.25'>
+		<SectionContainer className='px-1.25 lg:px-0.25' id='about'>
 			<div className='relative bg-sand rounded px-2 lg:px-4 py-4 lg:py-8.75 overflow-hidden'>
 				<QolcDecoration className='absolute top-1 md:top-2 right-0 w-1/2 lg:w-1/3 text-white pointer-events-none' />
 

@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 
-const SectionContainer = ({ children, className = '', fullBleed = '' }) => {
+const SectionContainer = ({ children, className = '', fullBleed = '', id }) => {
 	if (fullBleed) {
 		return (
 			<motion.section
+				id={id}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
@@ -21,6 +22,7 @@ const SectionContainer = ({ children, className = '', fullBleed = '' }) => {
 
 	return (
 		<motion.section
+			id={id}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
@@ -29,7 +31,7 @@ const SectionContainer = ({ children, className = '', fullBleed = '' }) => {
 		>
 			{children}
 		</motion.section>
-	);
+		);
 };
 
 export default SectionContainer;

@@ -94,8 +94,6 @@ body {
 		line-height: 130%;
 	}
 
-
-
 	.text-paragraph-sm {
 		color: #1d1e1f;
 		font-family: var(--font-heading);
@@ -137,10 +135,11 @@ body {
 
 html {
 	@apply scroll-smooth;
+	scroll-padding-top: 2.25rem;
 }
 
 .container {
-	@apply max-w-[85rem] 3xl:max-w-[95rem] mx-auto px-0.5
+	@apply max-w-[85rem] 3xl:max-w-[95rem] mx-auto px-0.5;
 }
 
 .dot-bg {

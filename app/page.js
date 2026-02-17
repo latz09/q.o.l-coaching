@@ -28,7 +28,7 @@ export default async function Home() {
 		aboutElizabeth,
 		faq,
 		contact,
-		footer
+		footer,
 	} = await f(Q);
 
 	return (
