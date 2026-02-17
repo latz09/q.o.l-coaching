@@ -65,8 +65,8 @@ const MobileNavbar = ({ data }) => {
 					<Image
 						src={logoIcon.asset.url}
 						alt='Q.O.L.C'
-						height={170}
-						width={170}
+						height={165}
+						width={165}
 						blurDataURL={logoIcon.asset.metadata?.lqip}
 					/>
 				)}
