@@ -20,13 +20,13 @@ export default function PrivacyPolicy() {
 						Effective Date:&nbsp;{effectiveDate}
 					</p>
 					<p className='mt-4'>
-						This Privacy Policy explains how {businessName} ("we," "us," or
+						{`This Privacy Policy explains how {businessName} ("we," "us," or
 						"our") collects, uses, discloses, and safeguards your information
-						when you visit our website or use our services.
+						when you visit our website or use our services.`}
 					</p>
 					<p className='mt-2 italic text-xs'>
-						NOTE: For readability, "site" refers to all pages, applications, and
-						services controlled by {businessName}.
+						{`NOTE: For readability, "site" refers to all pages, applications, and
+						services controlled by ${businessName}.`}
 					</p>
 				</header>
 
@@ -199,7 +199,7 @@ export default function PrivacyPolicy() {
 
 				{/* 9. CHILDREN'S PRIVACY */}
 				<section className='mb-8'>
-					<h2 className='text-xl font-semibold'>9&nbsp;– Children's Privacy</h2>
+					<h2 className='text-xl font-semibold'>{`9${'\u00A0'}– Children's Privacy`}</h2>
 					<p className='mt-2'>
 						Our site is not directed to children under 13 (or other age as
 						required by local law). We do not knowingly collect personal
@@ -224,9 +224,9 @@ export default function PrivacyPolicy() {
 						11&nbsp;– Changes to This Policy
 					</h2>
 					<p className='mt-2'>
-						We may update this Privacy Policy from time to time. Any changes
+		{`				We may update this Privacy Policy from time to time. Any changes
 						will be posted on this page with an updated "Effective Date."
-						Continued use of the site after such changes constitutes acceptance.
+						Continued use of the site after such changes constitutes acceptance.`}
 					</p>
 				</section>
 
