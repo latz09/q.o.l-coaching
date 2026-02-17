@@ -11,8 +11,8 @@ const About = ({ data }) => {
 				<QolcDecoration className='absolute top-1 md:top-2 right-0 w-1/2 lg:w-1/3 text-white pointer-events-none' />
 
 				<div className='relative z-10'>
-					<h2 className='mb-2 lg:mb-4'>{heading}</h2>
-					<h3 className='md:w-3/4 mb-1.5 lg:mb-3'>{subheading}</h3>
+					<h3 className='mb-2 lg:mb-4'>{heading}</h3>
+					<h4 className='md:w-3/4 mb-1.5 lg:mb-3'>{subheading}</h4>
 
 					<div className='lg:ml-auto lg:w-2/3'>
 						{paragraphs?.map((paragraph, index) => (
