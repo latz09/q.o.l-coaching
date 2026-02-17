@@ -12,7 +12,7 @@ const About = ({ data }) => {
 
 				<div className='relative z-10'>
 					<h2 className='mb-2 lg:mb-4'>{heading}</h2>
-					<h4 className='md:w-3/4 mb-1.5 lg:mb-3'>{subheading}</h4>
+					<h3 className='md:w-3/4 mb-1.5 lg:mb-3'>{subheading}</h3>
 
 					<div className='lg:ml-auto lg:w-2/3'>
 						{paragraphs?.map((paragraph, index) => (
