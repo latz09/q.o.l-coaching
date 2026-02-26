@@ -1,5 +1,5 @@
 'use client';
-
+import { track } from '@vercel/analytics';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
@@ -45,6 +45,7 @@ const Footer = ({ data }) => {
 					<div className='grid place-items-center w-full lg:w-auto mt-1.25 lg:mt-0 '>
 						<Link
 							href='/#contact-form'
+							onClick={() => track('Footer - Contact')}
 							className='bg-green-light rounded-full px-1.5 py-0.75 text-[1.125rem] font-[600] hover:opacity-90 transition duration-500 hover:text-white'
 						>
 							Contact me
@@ -61,7 +62,8 @@ const Footer = ({ data }) => {
 						Powered by LatzWebDesign
 					</p>
 					<Link
-						href='/privacy-policy'
+						href='/legal/privacy-policy'
+						onClick={() => track('Footer - Privacy Policy')}
 						className='text-caption text-white/90 hover:underline hover:underline-offset-4 lg:text-right'
 					>
 						Privacy policy

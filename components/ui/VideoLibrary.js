@@ -1,4 +1,5 @@
 'use client';
+import { track } from '@vercel/analytics';
 import { useState } from 'react';
 import Image from 'next/image';
 import TreeRingCenterLeft from '../svgs/TreeRingCenterLeft';
@@ -65,14 +66,19 @@ const VideoLibrary = ({ data }) => {
 				>
 					{isPlaying ? (
 						<iframe
-							src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+							src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
 							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 							allowFullScreen
 							className='w-full h-full'
 						/>
 					) : (
 						<button
-							onClick={() => setIsPlaying(true)}
+							onClick={() => {
+								track(`Video - ${data[activeIndex].title}`, {
+									videoId,
+								});
+								setIsPlaying(true);
+							}}
 							className='relative w-full h-full group'
 						>
 							<Image

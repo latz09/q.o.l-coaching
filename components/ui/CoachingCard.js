@@ -9,8 +9,8 @@ const CoachingCard = ({ data }) => {
   const { title, price, features, ctaText, ctaLink } = data;
   const { openBooking } = useBooking();
 
-  const handleClick = () => {
-    track(`CTA Click - Coaching - ${title}`, {
+ const handleClick = () => {
+    track(`${title} - Schedule`, {
       destination: ctaLink,
       buttonText: ctaText,
     });

@@ -6,7 +6,7 @@ const FormSuccessMessage = ({ onClose }) => (
 		initial={{ opacity: 0, scale: 0.95 }}
 		animate={{ opacity: 1, scale: 1 }}
 		transition={{ duration: 0.3 }}
-		className='relative flex items-center gap-0.75 bg-yellow-light shadow-card backdrop-blur-sm rounded p-1.5'
+		className='relative flex items-center gap-0.75 bg-light  backdrop-blur-sm rounded p-1.5'
 	>
 		<button
 			onClick={onClose}
@@ -16,7 +16,7 @@ const FormSuccessMessage = ({ onClose }) => (
 			<GoX className='size-1.5' />
 		</button>
 
-		<div className='w-[2.5rem] h-[2.5rem] rounded-full bg-sand flex items-center justify-center shrink-0'>
+		<div className=' flex items-center justify-center shrink-0'>
 			<motion.svg
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 24 24'
@@ -25,7 +25,7 @@ const FormSuccessMessage = ({ onClose }) => (
 				strokeWidth='2.5'
 				strokeLinecap='round'
 				strokeLinejoin='round'
-				className='w-[1.25rem] h-[1.25rem] text-primary'
+				className='size-1.5 text-dark'
 				initial={{ pathLength: 0 }}
 				animate={{ pathLength: 1 }}
 				transition={{ duration: 0.4, delay: 0.2 }}

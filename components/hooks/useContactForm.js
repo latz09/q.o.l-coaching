@@ -1,5 +1,6 @@
 // /hooks/useContactForm.js
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 
 const initialFormData = {
 	name: '',
@@ -36,6 +37,7 @@ export const useContactForm = () => {
 			}
 
 			setStatus('success');
+			track('Contact - Form Submit');
 			setFormData(initialFormData);
 		} catch (err) {
 			setStatus('error');

@@ -1,5 +1,5 @@
 'use client';
-
+import { track } from '@vercel/analytics';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -70,13 +70,12 @@ const MobileNavbar = ({ data }) => {
 						blurDataURL={logoIcon.asset.metadata?.lqip}
 					/>
 				)}
-				
-					<MenuIcon
-						isNavOpen={isNavOpen}
-						toggleNav={toggleNav}
-						variant='default'
-					/>
-				
+
+				<MenuIcon
+					isNavOpen={isNavOpen}
+					toggleNav={toggleNav}
+					variant='default'
+				/>
 			</header>
 
 			<AnimatePresence>
@@ -131,8 +130,11 @@ const MobileNavbar = ({ data }) => {
 									{navLinks.map((link, index) => (
 										<motion.li key={index} variants={linkVariants}>
 											<Link
-												href={`#${link.anchor}`}
-												onClick={toggleNav}
+												href={`/#${link.anchor}`}
+												onClick={() => {
+													track(`Nav Mobile - ${link.label}`);
+													toggleNav();
+												}}
 												className='block py-0.75 text-light text-[1.25rem] border-b border-yellow-light transition-colors duration-300 hover:text-[#87A96B]'
 											>
 												{link.label}

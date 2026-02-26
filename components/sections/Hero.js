@@ -68,7 +68,7 @@ const HeroSection = ({ data }) => {
 						<ButtonLink
 							href={ctaLink || '#schedule'}
 							variant='primary-on-light'
-							event='Hero CTA'
+							event='Hero Schedule'
 						>
 							{ctaText}
 						</ButtonLink>

@@ -8,7 +8,7 @@ const SessionCard = ({ data }) => {
 	const { openBooking } = useBooking();
 
 	const handleClick = (session) => {
-		track(`CTA Click - Biofield - ${session.title}`, {
+		track(`Biofield - ${session.title} - Schedule`, {
 			destination: session.ctaLink,
 			buttonText: session.ctaText,
 		});

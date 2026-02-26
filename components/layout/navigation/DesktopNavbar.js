@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { track } from '@vercel/analytics';
 
 const DesktopNavbar = ({ data }) => {
 	const { logoIcon, navLinks = [] } = data;
@@ -10,8 +11,6 @@ const DesktopNavbar = ({ data }) => {
 
 	const mainLinks = navLinks.slice(0, -1);
 	const lastLink = navLinks[navLinks.length - 1];
-
-
 
 	return (
 		<div className='hidden lg:flex items-center justify-between'>
@@ -28,7 +27,8 @@ const DesktopNavbar = ({ data }) => {
 				{mainLinks.map((link, index) => (
 					<Link
 						key={index}
-						href={`#${link.anchor}`}
+						href={`/#${link.anchor}`}
+						onClick={() => track(`Nav - ${link.label}`)}
 						className='block text-[1.25rem] font-[600] transition-all duration-200 cursor-pointer'
 					>
 						{link.label}
@@ -36,9 +36,9 @@ const DesktopNavbar = ({ data }) => {
 				))}
 				{lastLink && (
 					<Link
-						href={`#${lastLink.anchor}`}
+						href={`/#${lastLink.anchor}`}
+						onClick={() => track(`Nav - ${lastLink.label}`)}
 						className='block text-light border border-dark bg-dark hover:text-dark hover:bg-light transition duration-500 rounded-full px-2 py-0.5 font-[600]'
-					
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 					>
