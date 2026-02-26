@@ -6,6 +6,9 @@ import './globals.css';
 import { Urbanist } from 'next/font/google';
 import JsonLd from '@/lib/seo/JsonLd';
 import { organizationSchema } from '@/lib/seo/organizationSchema';
+import { VisualEditing } from 'next-sanity/visual-editing';
+import { draftMode } from 'next/headers';
+import DisableDraftMode from '@/components/DisableDraftMode';
 import { SITE_URL } from '@/lib/seo/siteConfig';
 
 const urbanist = Urbanist({
@@ -56,7 +59,9 @@ export const metadata = {
 	},
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const { isEnabled } = await draftMode();
+
 	return (
 		<html lang='en'>
 			<body className={`min-h-screen ${urbanist.variable}`}>
@@ -67,6 +72,12 @@ export default function RootLayout({ children }) {
 					<BookingPanel />
 					<Analytics />
 				</BookingProvider>
+				{isEnabled && (
+					<>
+						<VisualEditing />
+						<DisableDraftMode />
+					</>
+				)}
 			</body>
 		</html>
 	);
