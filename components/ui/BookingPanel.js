@@ -90,7 +90,7 @@ const BookingPanel = () => {
 											transition={{ duration: 0.3 }}
 										>
 											<motion.img
-												src='/images/QOLC_Logo_Horizontal_White.png'
+												 src={variant === 'dark' ? '/images/QOLC_Logo_Horizontal_White.png' : '/images/QOLC_Logo_Horizontal_Navy.png'}
 												alt='Loading'
 												className='w-12 h-auto'
 												animate={{
