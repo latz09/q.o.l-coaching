@@ -1,10 +1,12 @@
 import { Analytics } from '@vercel/analytics/next';
 import { BookingProvider } from '@/components/context/BookingContext';
 import BookingPanel from '@/components/ui/BookingPanel';
-import { mainLayoutMetadata } from '@/lib/seo/mainLayoutMetadata';
 import NavigationContainer from '@/components/layout/navigation/NavigationContainer';
 import './globals.css';
 import { Urbanist } from 'next/font/google';
+import JsonLd from '@/lib/seo/JsonLd';
+import { organizationSchema } from '@/lib/seo/organizationSchema';
+import { SITE_URL } from '@/lib/seo/siteConfig';
 
 const urbanist = Urbanist({
 	subsets: ['latin'],
@@ -14,37 +16,43 @@ const urbanist = Urbanist({
 });
 
 export const metadata = {
-	metadataBase: new URL(mainLayoutMetadata.siteUrl),
-	applicationName: mainLayoutMetadata.name,
-	title: {
-		default: mainLayoutMetadata.title,
-		template: mainLayoutMetadata.titleTemplate,
-	},
-	description: mainLayoutMetadata.description,
-	keywords: mainLayoutMetadata.keywords,
-	icons: {
-		icon: mainLayoutMetadata.favicon,
-	},
+	metadataBase: new URL(SITE_URL),
+	title:
+		'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+	description:
+		'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers. Remote sessions with Elizabeth Mann, PA-C. Practical tools for burnout recovery and whole-life wellness.',
+	keywords: [
+		'coaching for medical providers',
+		'healthcare professional coaching',
+		'physician assistant coach',
+		'medical provider burnout recovery',
+		'biofield tuning practitioner',
+		'biofield tuning remote sessions',
+		'transformational coaching',
+		'intuitive coaching',
+		'energy medicine practitioner',
+		'coaching for healthcare workers',
+		'coaching for therapists',
+		'quality of life coaching',
+	],
+	icons: { icon: '/favicon.ico' },
 	openGraph: {
-		title: mainLayoutMetadata.title,
-		description: mainLayoutMetadata.description,
-		url: mainLayoutMetadata.siteUrl,
-		siteName: mainLayoutMetadata.name,
-		images: [
-			{
-				url: mainLayoutMetadata.ogImage,
-				width: 1200,
-				height: 630,
-			},
-		],
+		title:
+			'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+		description:
+			'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers. Remote sessions with Elizabeth Mann, PA-C.',
+		url: SITE_URL,
+		siteName: 'Quality of Life Coaching',
+		images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: mainLayoutMetadata.title,
-		description: mainLayoutMetadata.description,
-		creator: mainLayoutMetadata.twitterHandle,
-		images: [mainLayoutMetadata.ogImage],
+		title:
+			'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+		description:
+			'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers.',
+		images: ['/opengraph-image.png'],
 	},
 };
 
@@ -53,6 +61,7 @@ export default function RootLayout({ children }) {
 		<html lang='en'>
 			<body className={`min-h-screen ${urbanist.variable}`}>
 				<BookingProvider>
+					<JsonLd data={organizationSchema} />
 					<NavigationContainer />
 					{children}
 					<BookingPanel />

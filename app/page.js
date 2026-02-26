@@ -1,7 +1,7 @@
 import { fetchContent as f } from '@/utils/cms/fetchContent';
 import { FETCH_HOMEPAGE_DATA_QUERY as Q } from '@/data/queries/pages/FETCH_HOME_PAGE_DATA_QUERY';
 
-import SectionContainer from '@/components/animations/SectionContainer';
+
 import About from '@/components/sections/About';
 import AboutElizabeth from '@/components/sections/AboutElizabeth';
 import BiofieldTuning from '@/components/sections/BiofieldTuning';
