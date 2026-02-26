@@ -60,7 +60,7 @@ const BookingPanel = () => {
 						className='fixed inset-0 z-[999] flex items-center justify-center p-0.75 lg:p-1 3xl:p-2.5'
 					>
 						<div
-							className={`relative w-full h-full max-w-[1200px] rounded flex flex-col overflow-hidden shadow-2xl ${variant === 'dark' ? 'bg-dark border-t border-yellow-light/75' : 'bg-sand'}`}
+							className={`relative w-full h-full max-w-[1200px] rounded flex flex-col overflow-hidden shadow-2xl ${variant === 'dark' ? 'bg-dark ' : 'bg-sand'}`}
 						>
 							{/* header */}
 							<div className='flex items-center justify-between px-1 py-0.75'>
