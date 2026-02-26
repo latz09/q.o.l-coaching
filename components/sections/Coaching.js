@@ -5,6 +5,8 @@ import SanityImage from '../ui/SanityImage';
 const Coaching = ({ data }) => {
 	const { heading, subheading, image, packages } = data;
 
+
+
 	return (
 		<SectionContainer id='coaching'>
 			<div className='grid 2xl:flex gap-0.5 2xl:gap-5 mb-2 xl:mb-[3.5rem] px-1.25 lg:px-0.25'>

@@ -11,7 +11,7 @@ const DesktopNavbar = ({ data }) => {
 	const mainLinks = navLinks.slice(0, -1);
 	const lastLink = navLinks[navLinks.length - 1];
 
-	console.log(data)
+
 
 	return (
 		<div className='hidden lg:flex items-center justify-between'>

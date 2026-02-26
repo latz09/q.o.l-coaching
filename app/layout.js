@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next';
-
-
+import { BookingProvider } from '@/components/context/BookingContext';
+import BookingPanel from '@/components/ui/BookingPanel';
 import { mainLayoutMetadata } from '@/lib/seo/mainLayoutMetadata';
 import NavigationContainer from '@/components/layout/navigation/NavigationContainer';
 import './globals.css';
@@ -52,10 +52,12 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
 			<body className={`min-h-screen ${urbanist.variable}`}>
-				<NavigationContainer />
-				{children}
-				<Analytics />
-				
+				<BookingProvider>
+					<NavigationContainer />
+					{children}
+					<BookingPanel />
+					<Analytics />
+				</BookingProvider>
 			</body>
 		</html>
 	);
