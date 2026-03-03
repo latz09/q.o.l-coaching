@@ -11,43 +11,17 @@ export const FETCH_HOMEPAGE_DATA_QUERY = `
       },
       hotspot,
       crop
-    },
-    logo {
-      asset->{
-        _id,
-        url,
-        metadata {
-          lqip
-        }
-      },
-      hotspot,
-      crop
-    },
+    },   
     headline,
     subheadline,
     credentials,
     ctaText,
     ctaLink
   },
-  "whatBringsYouHere": *[_type == "whatBringsYouHereSection"][0]{
-    heading,
-    image {
-      asset->{
-        _id,
-        url,
-        metadata {
-          lqip
-        }
-      },
-      hotspot,
-      crop
-    },
-    questions
-  },
-  "aboutCoaching": *[_type == "aboutCoachingSection"][0]{
+"introductionSection": *[_type == "introductionSection"][0]{
     heading,
     subheading,
-    paragraphs,
+    questions,
     inclusivityLine
   },
   "coachingServices": *[_type == "coachingServicesSection"][0]{

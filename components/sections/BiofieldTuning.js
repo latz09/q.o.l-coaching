@@ -31,7 +31,7 @@ const BiofieldTuning = ({ data }) => {
 						</p>
 					))}
 				</div>
-				<div className='my-2'>
+		<div className='my-2 overflow-hidden'>
 					<VideoLibrary data={youtubeVideos} />
 				</div>
 				<div className='max-w-[70rem] 3xl:max-w-[85rem] mx-auto space-y-1 lg:space-y-2'>

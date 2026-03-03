@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import SectionContainer from '../animations/SectionContainer';
 import TreeRingsDecorationDark from '../svgs/TreeRingsDecorationDark';
+import { track } from '@vercel/analytics';
 
 const AccordionItem = ({ question, answer, isOpen, onClick }) => {
 	return (
@@ -22,7 +23,9 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
 			</button>
 			<div
 				className={`grid transition-all duration-500 ease-in-out ${
-					isOpen ? 'grid-rows-[1fr] opacity-100 pt-0.5' : 'grid-rows-[0fr] opacity-0'
+					isOpen
+						? 'grid-rows-[1fr] opacity-100 pt-0.5'
+						: 'grid-rows-[0fr] opacity-0'
 				}`}
 			>
 				<div className='overflow-hidden'>
@@ -38,11 +41,18 @@ const FAQ = ({ data }) => {
 	const [openIndex, setOpenIndex] = useState(0);
 
 	const handleToggle = (index) => {
-		setOpenIndex(openIndex === index ? -1 : index);
+		const isOpening = openIndex !== index;
+		if (isOpening) {
+			track(`FAQ - ${items[index].question}`);
+		}
+		setOpenIndex(isOpening ? index : -1);
 	};
 
 	return (
-		<SectionContainer fullBleed='bg-gradient-to-b from-sand to-transparent' id='faq'>
+		<SectionContainer
+			fullBleed='bg-gradient-to-b from-sand to-transparent'
+			id='faq'
+		>
 			<div className='relative px-1.25 lg:px-0.25 grid gap-2 lg:flex lg:gap-4'>
 				{/* Tree Rings - bottom left behind heading */}
 				<TreeRingsDecorationDark className='absolute -bottom-[15%] -left-[5%] w-[300px] lg:w-[400px] pointer-events-none z-0 hidden md:block opacity-100' />
