@@ -11,7 +11,7 @@ const IntroductionSection = ({ data }) => {
 			className=' pb-4 lg:pb-8.75 space-y-2.5 relative'
 		>
 			<div className='space-y-2 lg:space-y-4 px-1.25 lg:px-0.25 '>
-				<h2 className="">{heading}</h2>
+				<h3 className="">{heading}</h3>
 				<h5 className='lg:w-2/3'>{subheading}</h5>
 			</div>
 			<div className='lg:w-2/3 ml-auto space-y-1 lg:space-y-1.25 px-1.25 lg:px-0.25 '>
