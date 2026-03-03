@@ -26,7 +26,7 @@ const [isHovered, setIsHovered] = useState(false);
 			destination: ctaLink,
 			buttonText: ctaText,
 		});
-		openBooking(ctaLink, 'Schedule a Session');
+		openBooking(ctaLink, 'Schedule an Appointment');
 	};
 
 	return (
