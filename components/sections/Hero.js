@@ -1,6 +1,12 @@
+'use client';
+
+import { track } from '@vercel/analytics';
+import { useState } from 'react';
 import SanityImage from '../ui/SanityImage';
 import ButtonLink from '../ui/ButtonLink';
 import SectionContainer from '../animations/SectionContainer';
+import { useBooking } from '../context/BookingContext';
+import { GoArrowRight } from 'react-icons/go';
 
 const HeroSection = ({ data }) => {
 	const {
@@ -12,6 +18,16 @@ const HeroSection = ({ data }) => {
 		ctaText,
 		ctaLink,
 	} = data;
+const [isHovered, setIsHovered] = useState(false);
+	const { openBooking } = useBooking();
+
+	const handleClick = () => {
+		track('Hero Schedule', {
+			destination: ctaLink,
+			buttonText: ctaText,
+		});
+		openBooking(ctaLink, 'Schedule a Session');
+	};
 
 	return (
 		<SectionContainer className=''>
@@ -62,13 +78,21 @@ const HeroSection = ({ data }) => {
 
 					<p className='text-paragraph-sm text-light mb-2.5'>{credentials}</p>
 					<div className='mb-5'>
-						<ButtonLink
-							href={ctaLink || '#schedule'}
-							variant='primary-on-light'
-							event='Hero Schedule'
-						>
-							{ctaText}
-						</ButtonLink>
+				<button
+	onClick={handleClick}
+	onMouseEnter={() => setIsHovered(true)}
+	onMouseLeave={() => setIsHovered(false)}
+	className='inline-flex items-center gap-0.5 justify-center transition-all duration-300 group text-button text-primary border border-green-light hover:text-light hover:border-primary rounded-full px-1.5 py-0.75'
+	style={{
+		background: isHovered
+			? 'linear-gradient(84deg, #396029 47.28%, #79B860 122.16%)'
+			: 'linear-gradient(270deg, #F1EADD -69.75%, #79B860 96.86%)',
+	}}
+>
+	<GoArrowRight className='max-w-0 opacity-0 transition-all duration-700 group-hover:max-w-[1.5rem] group-hover:opacity-100' />
+	<span>{ctaText}</span>
+	<GoArrowRight className='max-w-[1.5rem] opacity-100 transition-all duration-700 group-hover:max-w-0 group-hover:opacity-0' />
+</button>
 					</div>
 				</div>
 			</section>
