@@ -4,7 +4,7 @@ import SanityImage from '../ui/SanityImage';
 const AboutElizabeth = ({ data }) => {
 	const { heading, headshot, paragraphs, credentials } = data;
 	return (
-		<SectionContainer fullBleed='bg-sand'>
+		<SectionContainer fullBleed='bg-sand' id='about'>
 			<div className='px-1.25 lg:px-0.25 py-4 lg:py-8.75 grid gap-2 lg:gap-4 lg:grid-cols-2'>
 				<div className='relative min-h-[325px] lg:min-h-0 order-2 lg:order-1'>
 					<SanityImage
