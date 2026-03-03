@@ -56,7 +56,7 @@ const HeroSection = ({ data }) => {
 						/>
 					</svg>
 
-					<h1 className='text-light mt-1.5 mb-4'>{headline}</h1>
+					<h1 className='text-light mt-1.5 mb-2 lg:mb-4'>{headline}</h1>
 
 					<h6 className='text-light  mb-1'>{subheadline}</h6>
 
