@@ -1,8 +1,16 @@
 // /pages/api/submitContactForm.js
-import { sanityClient } from '@/utils/cms/sanityConnection';
+import { createClient } from 'next-sanity';
 import { EmailTemplateBuilder } from '@/utils/email-configuration/client-config/emailTemplateBuilder';
 import { clientConfig } from '@/utils/email-configuration/client-config/clientConfig';
 import transporter from '@/utils/nodemailer/transporter';
+
+const writeClient = createClient({
+	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+	apiVersion: '2024-12-01',
+	useCdn: false, // false for writes
+	token: process.env.SANITY_API_TOKEN, // Editor token
+});
 
 export default async function handler(req, res) {
 	if (req.method !== 'POST') {
@@ -38,8 +46,8 @@ export default async function handler(req, res) {
 	// Store in Sanity
 	let sanityResult = null;
 	try {
-		sanityResult = await sanityClient.create({
-			_type: 'submittedContactForm', // Make sure this matches your Sanity schema
+		sanityResult = await writeClient.create({
+			_type: 'submittedContactForm',
 			...formData,
 			sentAt: new Date().toISOString(),
 		});
