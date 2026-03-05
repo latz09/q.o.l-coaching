@@ -18,7 +18,7 @@ const HeroSection = ({ data }) => {
 		ctaText,
 		ctaLink,
 	} = data;
-const [isHovered, setIsHovered] = useState(false);
+	const [isHovered, setIsHovered] = useState(false);
 	const { openBooking } = useBooking();
 
 	const handleClick = () => {
@@ -78,21 +78,21 @@ const [isHovered, setIsHovered] = useState(false);
 
 					<p className='text-paragraph-sm text-light mb-2.5'>{credentials}</p>
 					<div className='mb-5'>
-				<button
-	onClick={handleClick}
-	onMouseEnter={() => setIsHovered(true)}
-	onMouseLeave={() => setIsHovered(false)}
-	className='inline-flex items-center gap-0.5 justify-center transition-all duration-300 group text-button text-primary border border-green-light hover:text-light hover:border-primary rounded-full px-1.5 py-0.75'
-	style={{
-		background: isHovered
-			? 'linear-gradient(84deg, #396029 47.28%, #79B860 122.16%)'
-			: 'linear-gradient(270deg, #F1EADD -69.75%, #79B860 96.86%)',
-	}}
->
-	<GoArrowRight className='max-w-0 opacity-0 transition-all duration-700 group-hover:max-w-[1.5rem] group-hover:opacity-100' />
-	<span>{ctaText}</span>
-	<GoArrowRight className='max-w-[1.5rem] opacity-100 transition-all duration-700 group-hover:max-w-0 group-hover:opacity-0' />
-</button>
+						<button
+							onClick={handleClick}
+							onMouseEnter={() => setIsHovered(true)}
+							onMouseLeave={() => setIsHovered(false)}
+							className='inline-flex items-center gap-0.5 justify-center transition-all duration-300 group text-button text-primary border border-green-light hover:text-light hover:border-primary rounded-full px-1.5 py-0.75'
+							style={{
+								background: isHovered
+									? 'linear-gradient(84deg, #396029 47.28%, #79B860 122.16%)'
+									: 'linear-gradient(270deg, #F1EADD -69.75%, #79B860 96.86%)',
+							}}
+						>
+							<GoArrowRight className='max-w-0 opacity-0 transition-all duration-700 group-hover:max-w-[1.5rem] group-hover:opacity-100' />
+							<span>{ctaText}</span>
+							<GoArrowRight className='max-w-[1.5rem] opacity-100 transition-all duration-700 group-hover:max-w-0 group-hover:opacity-0' />
+						</button>
 					</div>
 				</div>
 			</section>

@@ -20,24 +20,22 @@ const SessionCard = ({ data }) => {
 			{data?.map((session, index) => (
 				<div
 					key={index}
-					className={`p-1.25 lg:p-2.5 rounded ${index === 0 ? 'bg-[#F1EADD]' : 'bg-[#132544] text-white'}`}
+					onClick={() => handleClick(session)}
+					className='group p-1.25 lg:p-2.5 rounded bg-[#F1EADD] hover:bg-[#132544] transition-colors duration-300 cursor-pointer'
 				>
 					<div className='flex justify-between items-center mb-1 lg:mb-1.5'>
-						<h4 className={index === 0 ? 'text-dark' : 'text-white'}>
+						<h4 className='text-dark group-hover:text-white transition-colors duration-300'>
 							{session.title}
 						</h4>
-						<h6 className={index === 0 ? 'text-dark' : 'text-white'}>
+						<h6 className='text-dark group-hover:text-white transition-colors duration-300'>
 							{session.price}
 						</h6>
 					</div>
 					{session.ctaText && session.ctaLink && (
-						<button
-							onClick={() => handleClick(session)}
-							className={`hover:translate-x-0.5 transition-transform duration-500 flex items-center gap-0.5 text-paragraph-lg font-[600] ${index === 0 ? 'text-green-dark flex-row-reverse' : 'text-green-light'}`}
-						>
+						<div className='flex items-center gap-0.5 text-paragraph-lg font-[600] text-green-dark group-hover:text-green-light group-hover:translate-x-0.5 transition-all duration-500'>
 							{session.ctaText}
 							<GoArrowRight />
-						</button>
+						</div>
 					)}
 				</div>
 			))}
