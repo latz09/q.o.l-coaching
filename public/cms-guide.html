@@ -392,6 +392,9 @@
 				font-weight: 700;
 				margin-top: 1px;
 			}
+			.steps li > * {
+				min-width: 0;
+			}
 			.bullets {
 				list-style: none;
 				margin: 12px 0 20px 0;
@@ -617,6 +620,19 @@
 				.header-title {
 					font-size: 28px;
 				}
+				.steps li {
+					gap: 10px;
+					align-items: flex-start;
+				}
+				.steps li::before {
+					margin-top: 2px;
+					flex-shrink: 0;
+				}
+				.steps li span,
+				.steps li a,
+				.steps li code {
+					word-break: break-word;
+				}
 				.field-table,
 				.field-table tbody,
 				.field-table tr {
@@ -805,10 +821,22 @@
 				</div>
 				<div class="header-meta">
 					<div class="header-meta-item">
-						<strong>Website:</strong> qolc.latzwebdesign.com
+						<strong>Website:</strong>
+						<a
+							href="https://qolc.latzwebdesign.com"
+							target="_blank"
+							style="color: rgba(241, 234, 221, 0.6); font-weight: 400"
+							>qolc.latzwebdesign.com</a
+						>
 					</div>
 					<div class="header-meta-item">
-						<strong>Studio:</strong> qolc-coaching.sanity.studio
+						<strong>Studio:</strong>
+						<a
+							href="https://qolc-coaching.sanity.studio/structure"
+							target="_blank"
+							style="color: rgba(241, 234, 221, 0.6); font-weight: 400"
+							>qolc-coaching.sanity.studio</a
+						>
 					</div>
 				</div>
 				<button class="print-btn" onclick="window.print()">
@@ -846,20 +874,27 @@
 					</p>
 					<ol class="steps">
 						<li>
-							Go to your studio URL:
-							<a
-								href="https://qolc-coaching.sanity.studio/structure"
-								target="_blank"
-								>qolc-coaching.sanity.studio/structure</a
+							<span
+								>Go to your studio URL:
+								<a
+									href="https://qolc-coaching.sanity.studio/structure"
+									target="_blank"
+									>qolc-coaching.sanity.studio/structure</a
+								></span
 							>
 						</li>
 						<li>
-							Log in with the account you were invited with (Google, GitHub, or
-							email/password).
+							<span
+								>Log in with the account you were invited with (Google, GitHub,
+								or email/password).</span
+							>
 						</li>
 						<li>
-							You'll land on the main editing screen. Your content sections are
-							listed in the left sidebar under <strong>"Home Page."</strong>
+							<span
+								>You'll land on the main editing screen. Your content sections
+								are listed in the left sidebar under
+								<strong>"Home Page."</strong></span
+							>
 						</li>
 					</ol>
 				</div>
@@ -910,15 +945,19 @@
 					<h3 class="subsection-heading">Working with Images</h3>
 					<p class="doc-p">To add or change an image:</p>
 					<ol class="steps">
-						<li>Click the image field.</li>
+						<li><span>Click the image field.</span></li>
 						<li>
-							Click <strong>"Upload"</strong> to select a file from your
-							computer, or drag and drop.
+							<span
+								>Click <strong>"Upload"</strong> to select a file from your
+								computer, or drag and drop.</span
+							>
 						</li>
 						<li>
-							Set a <strong>hotspot</strong> by clicking on the image and
-							dragging the circle to the most important part. This ensures the
-							image crops well on all screen sizes.
+							<span
+								>Set a <strong>hotspot</strong> by clicking on the image and
+								dragging the circle to the most important part. This ensures the
+								image crops well on all screen sizes.</span
+							>
 						</li>
 					</ol>
 					<ul class="bullets">
@@ -935,15 +974,22 @@
 				<div class="subsection" id="publishing">
 					<h3 class="subsection-heading">Publishing</h3>
 					<ol class="steps">
-						<li>Make your edits.</li>
+						<li><span>Make your edits.</span></li>
 						<li>
-							Use Live Preview if you want to check how things look first.
+							<span
+								>Use Live Preview if you want to check how things look
+								first.</span
+							>
 						</li>
-						<li>Click <strong>"Publish"</strong> at the bottom right.</li>
 						<li>
-							Wait about a minute, then check the live site. If changes don't
-							appear, do a hard refresh: <code>Ctrl+Shift+R</code> on PC or
-							<code>Cmd+Shift+R</code> on Mac.
+							<span>Click <strong>"Publish"</strong> at the bottom right.</span>
+						</li>
+						<li>
+							<span
+								>Wait about a minute, then check the live site. If changes don't
+								appear, do a hard refresh: <code>Ctrl+Shift+R</code> on PC or
+								<code>Cmd+Shift+R</code> on Mac.</span
+							>
 						</li>
 					</ol>
 					<div class="callout callout-tip">
