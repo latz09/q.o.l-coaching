@@ -21,41 +21,36 @@ const urbanist = Urbanist({
 export const metadata = {
 	metadataBase: new URL(SITE_URL),
 	title:
-		'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+		'Quality of Life Coaching | Coaching for Medical Providers by a Medical Provider',
 	description:
-		'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers. Remote sessions with Elizabeth Mann, PA-C. Practical tools for burnout recovery and whole-life wellness.',
+		'Specialized coaching for medical providers, healthcare professionals, and caregivers — by a practicing PA-C. Practical tools for burnout recovery, clarity, and whole-life wellness. Remote sessions with Elizabeth Mann, PA-C.',
 	keywords: [
 		'coaching for medical providers',
-		'healthcare professional coaching',
+		'healthcare provider burnout coaching',
 		'physician assistant coach',
-		'medical provider burnout recovery',
-		'biofield tuning practitioner',
 		'biofield tuning remote sessions',
-		'transformational coaching',
-		'intuitive coaching',
-		'energy medicine practitioner',
-		'coaching for healthcare workers',
-		'coaching for therapists',
+		'biofield tuning practitioner',
+		'medical provider wellness coaching',
 		'quality of life coaching',
 	],
 	icons: { icon: '/favicon.ico' },
 	openGraph: {
 		title:
-			'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+			'Quality of Life Coaching | Coaching for Medical Providers by a Medical Provider',
 		description:
-			'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers. Remote sessions with Elizabeth Mann, PA-C.',
+			'Specialized coaching for medical providers, healthcare professionals, and caregivers — by a practicing PA-C. Remote sessions with Elizabeth Mann, PA-C.',
 		url: SITE_URL,
 		siteName: 'Quality of Life Coaching',
-		images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
+		
 		type: 'website',
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title:
-			'Quality of Life Coaching | Coaching & Biofield Tuning for Medical Providers',
+			'Quality of Life Coaching | Coaching for Medical Providers by a Medical Provider',
 		description:
-			'Transformational coaching and Biofield Tuning for medical providers, healthcare professionals, and caregivers.',
-		images: ['/opengraph-image.png'],
+			'Specialized coaching for medical providers, healthcare professionals, and caregivers — by a practicing PA-C. Remote sessions with Elizabeth Mann, PA-C.',
+	
 	},
 };
 
