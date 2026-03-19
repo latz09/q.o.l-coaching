@@ -1,13 +1,9 @@
-// next-sitemap.config.js
+const SITE_URL = 'https://www.qolc.latzwebdesign.com';
+
 module.exports = {
-	siteUrl: 'https://www.qolc.latzwebdesign.com',
+	siteUrl: SITE_URL,
 	generateRobotsTxt: true,
 	robotsTxtOptions: {
-		policies: [
-			{
-				userAgent: '*',
-				allow: '/',
-			},
-		],
+		policies: [{ userAgent: '*', allow: '/' }],
 	},
 };

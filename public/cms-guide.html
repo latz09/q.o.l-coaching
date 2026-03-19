@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			Content Management Guide &mdash; Quality of Life Coaching, LLC
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--navy: #182e55;
+				--navy-light: #243f73;
+				--navy-dark: #101f3a;
+				--sand: #f1eadd;
+				--sand-dark: #e6dccb;
+				--sand-deeper: #d9cdb8;
+				--white: #ffffff;
+				--text: #1a1a2e;
+				--text-muted: #5a6172;
+				--tip-bg: #eaf4fb;
+				--tip-border: #2e7fc4;
+				--warn-bg: #fff8ec;
+				--warn-border: #d4920a;
+				--field-bg: #f8f5f0;
+				--radius: 6px;
+				--sidebar-width: 260px;
+			}
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: 'DM Sans', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: var(--text);
+				background: var(--sand);
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: var(--sidebar-width);
+				background: var(--navy-dark);
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				overflow-y: auto;
+				z-index: 100;
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.3s ease;
+			}
+			.sidebar::-webkit-scrollbar {
+				width: 4px;
+			}
+			.sidebar::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			.sidebar::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.15);
+				border-radius: 4px;
+			}
+			.sidebar-logo {
+				padding: 28px 24px 20px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.sidebar-logo-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 17px;
+				font-weight: 600;
+				color: var(--sand);
+				line-height: 1.3;
+				letter-spacing: 0.01em;
+			}
+			.sidebar-logo-sub {
+				font-size: 11px;
+				color: rgba(255, 255, 255, 0.35);
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				margin-top: 4px;
+				font-weight: 500;
+			}
+			.sidebar-section {
+				padding: 18px 0 8px;
+			}
+			.sidebar-section-label {
+				font-size: 10px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				color: rgba(255, 255, 255, 0.25);
+				padding: 0 24px;
+				margin-bottom: 4px;
+			}
+			.sidebar-link {
+				display: block;
+				padding: 8px 24px;
+				font-size: 13.5px;
+				font-weight: 400;
+				color: rgba(255, 255, 255, 0.6);
+				text-decoration: none;
+				transition: all 0.15s ease;
+				border-left: 2px solid transparent;
+				line-height: 1.4;
+			}
+			.sidebar-link:hover {
+				color: var(--sand);
+				background: rgba(255, 255, 255, 0.05);
+				border-left-color: rgba(241, 234, 221, 0.3);
+			}
+			.sidebar-link.active {
+				color: var(--sand);
+				background: rgba(255, 255, 255, 0.07);
+				border-left-color: var(--sand);
+				font-weight: 500;
+			}
+			.sidebar-footer {
+				margin-top: auto;
+				padding: 20px 24px;
+				border-top: 1px solid rgba(255, 255, 255, 0.08);
+				font-size: 11.5px;
+				color: rgba(255, 255, 255, 0.3);
+				line-height: 1.5;
+			}
+			.sidebar-footer a {
+				color: rgba(241, 234, 221, 0.5);
+				text-decoration: none;
+			}
+			.sidebar-footer a:hover {
+				color: var(--sand);
+			}
+			.main {
+				margin-left: var(--sidebar-width);
+				flex: 1;
+				min-width: 0;
+			}
+			.page-header {
+				background: var(--navy);
+				padding: 64px 64px 56px;
+				position: relative;
+				overflow: hidden;
+			}
+			.page-header::before {
+				content: '';
+				position: absolute;
+				top: -80px;
+				right: -80px;
+				width: 360px;
+				height: 360px;
+				background: radial-gradient(
+					circle,
+					rgba(241, 234, 221, 0.06) 0%,
+					transparent 70%
+				);
+				pointer-events: none;
+			}
+			.page-header::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background: linear-gradient(
+					90deg,
+					transparent,
+					rgba(241, 234, 221, 0.2),
+					transparent
+				);
+			}
+			.header-eyebrow {
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.16em;
+				color: rgba(241, 234, 221, 0.45);
+				margin-bottom: 14px;
+			}
+			.header-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 52px;
+				font-weight: 600;
+				color: var(--sand);
+				line-height: 1.1;
+				margin-bottom: 16px;
+				letter-spacing: -0.01em;
+			}
+			.header-logo {
+				height: 48px;
+				width: auto;
+				margin-bottom: 24px;
+				display: block;
+				opacity: 0.9;
+			}
+			.header-sub {
+				font-size: 16px;
+				color: rgba(241, 234, 221, 0.6);
+				max-width: 500px;
+				line-height: 1.6;
+				font-weight: 300;
+			}
+			.header-meta {
+				margin-top: 28px;
+				display: flex;
+				gap: 24px;
+				flex-wrap: wrap;
+			}
+			.header-meta-item {
+				font-size: 12.5px;
+				color: rgba(241, 234, 221, 0.4);
+			}
+			.header-meta-item strong {
+				color: rgba(241, 234, 221, 0.7);
+				font-weight: 500;
+			}
+			.content {
+				padding: 56px 64px 80px;
+				max-width: 860px;
+			}
+			.doc-section {
+				margin-bottom: 72px;
+				scroll-margin-top: 32px;
+			}
+			.section-heading {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 38px;
+				font-weight: 600;
+				color: var(--navy);
+				letter-spacing: -0.01em;
+				line-height: 1.15;
+				margin-bottom: 8px;
+				padding-bottom: 16px;
+				border-bottom: 2px solid var(--navy);
+			}
+			.section-intro {
+				font-size: 15.5px;
+				color: var(--text-muted);
+				margin-bottom: 32px;
+				max-width: 640px;
+				line-height: 1.7;
+			}
+			.subsection {
+				margin-bottom: 48px;
+				scroll-margin-top: 32px;
+			}
+			.subsection-heading {
+				font-size: 19px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 16px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.subsection-heading::before {
+				content: '';
+				display: inline-block;
+				width: 3px;
+				height: 20px;
+				background: var(--navy);
+				border-radius: 2px;
+				flex-shrink: 0;
+			}
+			.field-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 16px;
+				border-radius: var(--radius);
+				overflow: hidden;
+				border: 1px solid var(--sand-deeper);
+			}
+			.field-table tr:not(:last-child) {
+				border-bottom: 1px solid var(--sand-deeper);
+			}
+			.field-label {
+				background: var(--field-bg);
+				padding: 11px 16px;
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--navy);
+				vertical-align: top;
+				width: 190px;
+				white-space: nowrap;
+				border-right: 1px solid var(--sand-deeper);
+			}
+			.field-desc {
+				padding: 11px 16px;
+				font-size: 14px;
+				color: var(--text);
+				vertical-align: top;
+				background: var(--white);
+				line-height: 1.6;
+			}
+			.field-limit {
+				display: inline-block;
+				margin-top: 4px;
+				font-size: 11.5px;
+				color: var(--text-muted);
+				background: var(--sand);
+				border-radius: 20px;
+				padding: 1px 8px;
+				font-weight: 500;
+			}
+			.callout {
+				border-radius: var(--radius);
+				padding: 14px 18px;
+				margin: 20px 0;
+				font-size: 14px;
+				line-height: 1.65;
+				border-left-width: 3px;
+				border-left-style: solid;
+			}
+			.callout-tip {
+				background: var(--tip-bg);
+				border-left-color: var(--tip-border);
+				color: #1a4a6b;
+			}
+			.callout-warn {
+				background: var(--warn-bg);
+				border-left-color: var(--warn-border);
+				color: #6b4400;
+			}
+			.callout-icon {
+				font-size: 15px;
+				margin-right: 6px;
+			}
+			.callout strong {
+				font-weight: 600;
+			}
+			.steps {
+				counter-reset: steps;
+				list-style: none;
+				margin: 16px 0 24px;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.steps li {
+				counter-increment: steps;
+				display: flex;
+				align-items: flex-start;
+				gap: 14px;
+				font-size: 15px;
+				line-height: 1.6;
+			}
+			.steps li::before {
+				content: counter(steps);
+				flex-shrink: 0;
+				width: 26px;
+				height: 26px;
+				background: var(--navy);
+				color: var(--sand);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				font-weight: 700;
+				margin-top: 1px;
+			}
+			.bullets {
+				list-style: none;
+				margin: 12px 0 20px 0;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+			.bullets li {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+				font-size: 15px;
+				line-height: 1.6;
+				color: var(--text);
+			}
+			.bullets li::before {
+				content: '';
+				flex-shrink: 0;
+				width: 5px;
+				height: 5px;
+				background: var(--navy);
+				border-radius: 50%;
+				margin-top: 9px;
+			}
+			.section-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				background: var(--navy);
+				color: var(--sand);
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding: 4px 12px;
+				border-radius: 20px;
+				margin-bottom: 20px;
+			}
+			.doc-p {
+				font-size: 15.5px;
+				line-height: 1.75;
+				color: var(--text);
+				margin-bottom: 16px;
+				max-width: 680px;
+			}
+			strong {
+				font-weight: 600;
+			}
+			a {
+				color: var(--navy);
+				font-weight: 500;
+			}
+			a:hover {
+				color: var(--navy-light);
+			}
+			code {
+				background: var(--sand-dark);
+				padding: 1px 6px;
+				border-radius: 3px;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+				font-size: 13px;
+				color: var(--navy);
+			}
+			.divider {
+				border: none;
+				border-top: 1px solid var(--sand-deeper);
+				margin: 48px 0;
+			}
+			.help-card {
+				background: var(--navy);
+				border-radius: 10px;
+				padding: 36px 40px;
+				color: var(--sand);
+				margin-top: 32px;
+			}
+			.help-card h3 {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 28px;
+				font-weight: 600;
+				margin-bottom: 12px;
+				color: var(--sand);
+			}
+			.help-card p {
+				font-size: 15px;
+				color: rgba(241, 234, 221, 0.7);
+				margin-bottom: 20px;
+				line-height: 1.65;
+			}
+			.help-card a {
+				color: var(--sand);
+				font-weight: 500;
+			}
+			.help-links {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				margin-top: 20px;
+			}
+			.help-link-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 15px;
+			}
+			.help-link-label {
+				font-weight: 600;
+				color: rgba(241, 234, 221, 0.5);
+				width: 60px;
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+			}
+			.help-link-item a {
+				color: var(--sand);
+				text-decoration: none;
+				border-bottom: 1px solid rgba(241, 234, 221, 0.3);
+				transition: border-color 0.15s;
+			}
+			.help-link-item a:hover {
+				border-bottom-color: var(--sand);
+			}
+			.help-card-tagline {
+				margin-top: 28px;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				font-style: italic;
+				font-size: 14px;
+				color: rgba(241, 234, 221, 0.4);
+			}
+			.tips-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 14px;
+				margin-top: 24px;
+			}
+			.tip-card {
+				background: var(--white);
+				border: 1px solid var(--sand-deeper);
+				border-radius: var(--radius);
+				padding: 18px 20px;
+				font-size: 14px;
+				line-height: 1.6;
+				color: var(--text);
+			}
+			.tip-card-icon {
+				font-size: 20px;
+				margin-bottom: 8px;
+				display: block;
+			}
+			.tip-card strong {
+				display: block;
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 4px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			.mobile-toggle {
+				display: none;
+				position: fixed;
+				bottom: 24px;
+				right: 24px;
+				z-index: 200;
+				background: var(--navy);
+				color: var(--sand);
+				border: none;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				font-size: 20px;
+				cursor: pointer;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+				align-items: center;
+				justify-content: center;
+			}
+			.sidebar-overlay {
+				display: none;
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.4);
+				z-index: 99;
+			}
+
+			@media (max-width: 900px) {
+				.sidebar {
+					transform: translateX(-100%);
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.main {
+					margin-left: 0;
+				}
+				.mobile-toggle {
+					display: flex;
+				}
+				.sidebar-overlay.visible {
+					display: block;
+				}
+				.page-header {
+					padding: 40px 28px 36px;
+				}
+				.content {
+					padding: 36px 28px 60px;
+				}
+				.header-title {
+					font-size: 36px;
+				}
+				.tips-grid {
+					grid-template-columns: 1fr;
+				}
+				.field-label {
+					width: 140px;
+					white-space: normal;
+				}
+			}
+
+			@media print {
+				.sidebar,
+				.sidebar-overlay,
+				.mobile-toggle {
+					display: none !important;
+				}
+				.main {
+					margin-left: 0 !important;
+				}
+				body {
+					background: white !important;
+					display: block !important;
+				}
+				@page {
+					margin: 0.75in 0.85in;
+				}
+				.page-header {
+					padding: 24px 0 20px !important;
+					background: white !important;
+					border-bottom: 2px solid #182e55 !important;
+				}
+				.header-eyebrow {
+					color: #182e55 !important;
+				}
+				.header-title {
+					color: #182e55 !important;
+					font-size: 32px !important;
+				}
+				.header-sub {
+					color: #444 !important;
+				}
+				.header-meta-item {
+					color: #444 !important;
+				}
+				.header-meta-item strong {
+					color: #182e55 !important;
+				}
+				.header-logo {
+					filter: invert(1) sepia(1) saturate(5) hue-rotate(190deg)
+						brightness(0.3) !important;
+					opacity: 1 !important;
+					height: 36px !important;
+				}
+				.content {
+					padding: 32px 0 !important;
+					max-width: 100% !important;
+				}
+				.subsection {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.callout {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.field-table {
+					page-break-inside: auto;
+					break-inside: auto;
+				}
+				.field-table tr {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.tip-card {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.help-card {
+					page-break-inside: avoid;
+					break-inside: avoid;
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+				.section-heading,
+				.subsection-heading {
+					page-break-after: avoid;
+					break-after: avoid;
+				}
+				.section-badge,
+				.field-label {
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+				.tips-grid {
+					grid-template-columns: 1fr 1fr !important;
+				}
+				a {
+					color: #182e55 !important;
+				}
+				.divider {
+					border-top: 1px solid #d9cdb8 !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="sidebar" id="sidebar">
+			<div class="sidebar-logo">
+				<div class="sidebar-logo-title">Quality of Life Coaching, LLC</div>
+				<div class="sidebar-logo-sub">CMS Guide</div>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Getting Started</div>
+				<a href="#logging-in" class="sidebar-link">Logging In</a>
+				<a href="#two-tabs" class="sidebar-link">The Two Tabs</a>
+				<a href="#drafts" class="sidebar-link">Drafts vs. Published</a>
+				<a href="#images" class="sidebar-link">Working with Images</a>
+				<a href="#publishing" class="sidebar-link">Publishing</a>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Page Sections</div>
+				<a href="#navigation" class="sidebar-link">Navigation</a>
+				<a href="#hero" class="sidebar-link">Hero</a>
+				<a href="#introduction" class="sidebar-link">Introduction</a>
+				<a href="#coaching-services" class="sidebar-link"
+					>Coaching Services &amp; Booking</a
+				>
+				<a href="#biofield-tuning" class="sidebar-link">Biofield Tuning</a>
+				<a href="#about-elizabeth" class="sidebar-link">About Elizabeth</a>
+				<a href="#faq" class="sidebar-link">FAQ</a>
+				<a href="#contact-form" class="sidebar-link">Contact Form</a>
+				<a href="#footer" class="sidebar-link">Footer</a>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Other</div>
+				<a href="#form-submissions" class="sidebar-link">Form Submissions</a>
+				<a href="#quick-tips" class="sidebar-link">Quick Tips</a>
+				<a href="#need-help" class="sidebar-link">Need Help?</a>
+			</div>
+			<div class="sidebar-footer">
+				Powered by
+				<a href="https://latzwebdesign.com" target="_blank">Latz Web Design</a
+				><br />
+				No fluff. Just results.
+			</div>
+		</nav>
+
+		<div class="sidebar-overlay" id="overlay"></div>
+
+		<div class="main">
+			<header class="page-header">
+				<!-- ============================================ -->
+				<!-- CLIENT LOGO: replace src with client logo  -->
+				<!-- Recommended: SVG or PNG, white/light version for dark bg -->
+				<!-- ============================================ -->
+				<img
+					src="./logo.png"
+					alt="Quality of Life Coaching, LLC"
+					class="header-logo"
+					onerror="this.style.display = 'none'"
+				/>
+				<div class="header-eyebrow">Content Management Guide</div>
+				<div class="header-title">Quality of Life<br />Coaching, LLC</div>
+				<div class="header-sub">
+					Everything you need to edit and manage content on your website &mdash;
+					no tech background required.
+				</div>
+				<div class="header-meta">
+					<div class="header-meta-item">
+						<strong>Website:</strong> qolc.latzwebdesign.com
+					</div>
+					<div class="header-meta-item">
+						<strong>Studio:</strong> qolc-coaching.sanity.studio
+					</div>
+				</div>
+			</header>
+
+			<div class="content">
+				<div class="doc-section" id="getting-started">
+					<div class="section-badge">Getting Started</div>
+					<h2 class="section-heading">Getting Started</h2>
+				</div>
+
+				<div class="subsection" id="logging-in">
+					<h3 class="subsection-heading">Logging In</h3>
+					<p class="doc-p">
+						Your content management system (CMS) is where you edit everything on
+						qolc.latzwebdesign.com. To access it:
+					</p>
+					<ol class="steps">
+						<li>
+							Go to your studio URL:
+							<a
+								href="https://qolc-coaching.sanity.studio/structure"
+								target="_blank"
+								>qolc-coaching.sanity.studio/structure</a
+							>
+						</li>
+						<li>
+							Log in with the account you were invited with (Google, GitHub, or
+							email/password).
+						</li>
+						<li>
+							You'll land on the main editing screen. Your content sections are
+							listed in the left sidebar under <strong>"Home Page."</strong>
+						</li>
+					</ol>
+				</div>
+
+				<div class="subsection" id="two-tabs">
+					<h3 class="subsection-heading">The Two Tabs</h3>
+					<p class="doc-p">At the top of your studio you'll see two tabs:</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Edit Content</td>
+							<td class="field-desc">
+								Your main workspace. Browse and edit all content here. This is
+								where you'll spend most of your time.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Live Preview</td>
+							<td class="field-desc">
+								See your actual website with changes updating as you type. Click
+								any element in the preview to jump directly to that field in the
+								editor.
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="subsection" id="drafts">
+					<h3 class="subsection-heading">Drafts vs. Published</h3>
+					<p class="doc-p">
+						Every change you make is saved as a draft automatically. Drafts are
+						<strong>not</strong> visible on the live website &mdash; only you
+						can see them in the studio.
+					</p>
+					<p class="doc-p">
+						To make your changes live, click the <strong>Publish</strong> button
+						at the bottom right of the editor. Changes appear on
+						qolc.latzwebdesign.com within about a minute.
+					</p>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Don't worry about breaking anything. Your
+						drafts don't affect the live site until you hit Publish. Edit
+						freely, then publish when it looks right.
+					</div>
+				</div>
+
+				<div class="subsection" id="images">
+					<h3 class="subsection-heading">Working with Images</h3>
+					<p class="doc-p">To add or change an image:</p>
+					<ol class="steps">
+						<li>Click the image field.</li>
+						<li>
+							Click <strong>"Upload"</strong> to select a file from your
+							computer, or drag and drop.
+						</li>
+						<li>
+							Set a <strong>hotspot</strong> by clicking on the image and
+							dragging the circle to the most important part. This ensures the
+							image crops well on all screen sizes.
+						</li>
+					</ol>
+					<ul class="bullets">
+						<li>Use JPG or PNG format.</li>
+						<li>Keep file sizes under 2MB for best performance.</li>
+						<li>
+							Always set the hotspot on your headshot &mdash; put it on your
+							face.
+						</li>
+						<li>The system automatically optimizes images for fast loading.</li>
+					</ul>
+				</div>
+
+				<div class="subsection" id="publishing">
+					<h3 class="subsection-heading">Publishing</h3>
+					<ol class="steps">
+						<li>Make your edits.</li>
+						<li>
+							Use Live Preview if you want to check how things look first.
+						</li>
+						<li>Click <strong>"Publish"</strong> at the bottom right.</li>
+						<li>
+							Wait about a minute, then check the live site. If changes don't
+							appear, do a hard refresh: <code>Ctrl+Shift+R</code> on PC or
+							<code>Cmd+Shift+R</code> on Mac.
+						</li>
+					</ol>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Bookmark your studio URL so you can get back
+						quickly:
+						<a
+							href="https://qolc-coaching.sanity.studio/structure"
+							target="_blank"
+							>qolc-coaching.sanity.studio/structure</a
+						>
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="your-content">
+					<div class="section-badge">Your Content</div>
+					<h2 class="section-heading">Your Content</h2>
+					<p class="section-intro">
+						Your website is a single page. In the studio sidebar, everything
+						lives under <strong>"Home Page"</strong> &mdash; click it to expand
+						the list. Each section below matches one item in that list.
+					</p>
+				</div>
+
+				<div class="subsection" id="navigation">
+					<h3 class="subsection-heading">Navigation</h3>
+					<p class="doc-p">
+						The sticky nav bar that appears at the top of the page as visitors
+						scroll. Contains your logo and anchor links to each section.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Nav Logo Icon (Small)</td>
+							<td class="field-desc">
+								The compact logo displayed in the sticky nav bar as visitors
+								scroll down.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Mobile Menu Logo</td>
+							<td class="field-desc">
+								The larger logo shown inside the slideout menu on mobile
+								devices.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Navigation Links</td>
+							<td class="field-desc">
+								The anchor links that scroll visitors to sections on the page.
+								Each link has a <strong>Label</strong> (the visible text) and an
+								<strong>Anchor ID</strong> (the section it jumps to).
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> Anchor IDs are locked (read-only) &mdash;
+						they're tied directly to the page structure. Only edit the Label
+						text.
+					</div>
+				</div>
+
+				<div class="subsection" id="hero">
+					<h3 class="subsection-heading">Hero</h3>
+					<p class="doc-p">
+						The full-width banner at the very top of the page &mdash; the first
+						thing visitors see.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Background Image</td>
+							<td class="field-desc">
+								The large background photo. Set the hotspot on the most
+								important part so it crops well on mobile.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Headline</td>
+							<td class="field-desc">
+								Your main title &mdash; currently "Quality of Life Coaching,
+								LLC."<br /><span class="field-limit"
+									>10&ndash;60 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Subheadline</td>
+							<td class="field-desc">
+								The subtitle below the headline &mdash; currently "Coaching for
+								Medical Providers by a Medical Provider."<br /><span
+									class="field-limit"
+									>20&ndash;100 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Credentials Line</td>
+							<td class="field-desc">
+								Your name and credentials &mdash; currently "Elizabeth Mann,
+								MSPAS, MPH, PA-C."<br /><span class="field-limit"
+									>5&ndash;60 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">CTA Button Text</td>
+							<td class="field-desc">
+								The text on the main call-to-action button &mdash; currently
+								"Schedule."<br /><span class="field-limit"
+									>2&ndash;35 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">CTA Booking Link</td>
+							<td class="field-desc">
+								The Acuity scheduling URL the button opens. Must start with
+								<code>https://</code>.
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="subsection" id="introduction">
+					<h3 class="subsection-heading">Introduction</h3>
+					<p class="doc-p">
+						The section below the hero that sets the tone for your practice.
+						Introduces the coaching philosophy and speaks directly to your
+						audience.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section title &mdash; currently "Welcome! I'm glad you are
+								here."<br /><span class="field-limit"
+									>5&ndash;50 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Subheading</td>
+							<td class="field-desc">
+								A larger intro paragraph displayed prominently. Keep it punchy
+								&mdash; this is the hook.<br /><span class="field-limit"
+									>60&ndash;250 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Questions</td>
+							<td class="field-desc">
+								Each item is a separate paragraph in the body of this section.
+								Supports inline formatting: <code>_underscores_</code> = italic,
+								<code>*asterisks*</code> = bold, <code>*_both_*</code> = bold
+								italic.<br /><span class="field-limit"
+									>Up to 4 items &middot; each up to 600 chars</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Inclusivity Statement</td>
+							<td class="field-desc">
+								The short line at the bottom &mdash; currently "All genders,
+								ethnicities, and belief systems welcome."<br /><span
+									class="field-limit"
+									>10&ndash;80 characters</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> The Questions field supports simple inline
+						formatting with underscores and asterisks. Do not use HTML tags
+						&mdash; they won't render correctly.
+					</div>
+				</div>
+
+				<div class="subsection" id="coaching-services">
+					<h3 class="subsection-heading">Coaching Services &amp; Booking</h3>
+					<p class="doc-p">
+						The packages section where visitors review and book your coaching
+						offerings. Displays your packages as cards with pricing and a
+						booking button each.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Section Heading</td>
+							<td class="field-desc">
+								The title above the packages &mdash; currently "Coaching
+								services &amp; booking."<br /><span class="field-limit"
+									>5&ndash;50 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Subheading</td>
+							<td class="field-desc">
+								One sentence below the heading describing the section.<br /><span
+									class="field-limit"
+									>30&ndash;150 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Section Image</td>
+							<td class="field-desc">
+								A photo displayed alongside the package cards. Set the hotspot.
+							</td>
+						</tr>
+					</table>
+					<h4
+						style="
+							font-size: 15px;
+							font-weight: 600;
+							color: var(--navy);
+							margin: 24px 0 12px;
+						"
+					>
+						Coaching Packages
+					</h4>
+					<p class="doc-p">
+						Each package is a card on the page. You can add, remove, or reorder
+						packages. Each package has:
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Package Title</td>
+							<td class="field-desc">
+								The name of the package &mdash; e.g., "Initial coaching
+								consultation."<br /><span class="field-limit"
+									>10&ndash;50 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Price</td>
+							<td class="field-desc">
+								Displayed as the package price &mdash; e.g., "$300."<br /><span
+									class="field-limit"
+									>1&ndash;10 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Features</td>
+							<td class="field-desc">
+								Checkmark bullets describing what's included. Each bullet should
+								be one concise idea.<br /><span class="field-limit"
+									>Up to 7 bullets &middot; each 10&ndash;90 chars</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Button Text</td>
+							<td class="field-desc">
+								The booking button label &mdash; e.g., "Schedule a
+								consultation."<br /><span class="field-limit"
+									>5&ndash;35 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Button Link</td>
+							<td class="field-desc">
+								Your Acuity scheduling URL for this specific package. Must start
+								with <code>https://</code>.
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span> <strong>Tip:</strong> To
+						update pricing, open the package, change the Price field, and
+						publish. Changes appear on the live site within a minute.
+					</div>
+				</div>
+
+				<div class="subsection" id="biofield-tuning">
+					<h3 class="subsection-heading">Biofield Tuning</h3>
+					<p class="doc-p">
+						The section describing your Biofield Tuning services. Contains
+						explanatory text, embedded YouTube videos, session details, and
+						booking packages.
+					</p>
+					<h4
+						style="
+							font-size: 15px;
+							font-weight: 600;
+							color: var(--navy);
+							margin: 24px 0 12px;
+						"
+					>
+						Section Content
+					</h4>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Section Heading</td>
+							<td class="field-desc">
+								The title of this section &mdash; currently "Biofield
+								Tuning."<br /><span class="field-limit"
+									>5&ndash;40 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Body Paragraphs</td>
+							<td class="field-desc">
+								Explanatory paragraphs about what Biofield Tuning is. Each item
+								is a separate paragraph.<br /><span class="field-limit"
+									>Up to 3 paragraphs &middot; each 80&ndash;300 chars</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">YouTube Video URLs</td>
+							<td class="field-desc">
+								Embedded videos shown as tabs. Each has a
+								<strong>Title</strong> (the tab label) and a
+								<strong>YouTube URL</strong>. Currently shows "Biofield Tuning
+								overview" and "Biofield Tuning at a distance."<br /><span
+									class="field-limit"
+									>5&ndash;60 chars per title</span
+								>
+							</td>
+						</tr>
+					</table>
+					<h4
+						style="
+							font-size: 15px;
+							font-weight: 600;
+							color: var(--navy);
+							margin: 24px 0 12px;
+						"
+					>
+						Session Details
+					</h4>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Session Heading</td>
+							<td class="field-desc">
+								Heading for the session details block &mdash; currently "Session
+								details."<br /><span class="field-limit"
+									>5&ndash;40 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Session Subheading</td>
+							<td class="field-desc">
+								A paragraph with your personal context about Biofield Tuning.<br /><span
+									class="field-limit"
+									>80&ndash;350 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Session Bullets</td>
+							<td class="field-desc">
+								Short bullets describing session logistics &mdash; e.g., "Remote
+								session done via telephone."<br /><span class="field-limit"
+									>Up to 6 bullets &middot; each 10&ndash;80 chars</span
+								>
+							</td>
+						</tr>
+					</table>
+					<h4
+						style="
+							font-size: 15px;
+							font-weight: 600;
+							color: var(--navy);
+							margin: 24px 0 12px;
+						"
+					>
+						Biofield Tuning Packages
+					</h4>
+					<p class="doc-p">
+						Same structure as coaching packages. Each package has a Title,
+						Price, Button Text, and Button Link (Acuity URL).
+					</p>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span> <strong>Tip:</strong> To
+						add a new YouTube video tab, click the "+" in the YouTube Video URLs
+						list, enter a title and paste the full YouTube URL.
+					</div>
+				</div>
+
+				<div class="subsection" id="about-elizabeth">
+					<h3 class="subsection-heading">About Elizabeth</h3>
+					<p class="doc-p">
+						Your personal bio section &mdash; appears on the page as "Coach
+						Elizabeth." Includes your story, a headshot, and your credentials
+						list.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section heading &mdash; currently "Coach Elizabeth."<br /><span
+									class="field-limit"
+									>5&ndash;40 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Headshot Photo</td>
+							<td class="field-desc">
+								Your profile photo. Set the hotspot on your face. This field is
+								optional &mdash; the layout accommodates adding it later.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Bio Paragraphs</td>
+							<td class="field-desc">
+								Each item is a separate paragraph of your bio. Write each as a
+								self-contained chunk of text.<br /><span class="field-limit"
+									>Up to 4 paragraphs &middot; each 60&ndash;400 chars</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Credentials</td>
+							<td class="field-desc">
+								Your listed credentials displayed as a styled list. Each
+								credential has a <strong>Title</strong> (e.g., "Certified
+								Physician Assistant, NCCPA") and a
+								<strong>Year/Range</strong> (e.g., "2008&ndash;present").<br /><span
+									class="field-limit"
+									>Up to 8 credentials &middot; title 5&ndash;60 chars</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Update credentials here whenever you earn new
+						certifications. The list updates on the live site immediately after
+						publishing.
+					</div>
+				</div>
+
+				<div class="subsection" id="faq">
+					<h3 class="subsection-heading">FAQ</h3>
+					<p class="doc-p">
+						Frequently asked questions displayed as an expandable accordion.
+						Visitors click a question to reveal the answer.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Section Heading</td>
+							<td class="field-desc">
+								The heading above the FAQ accordion &mdash; currently
+								"Frequently Asked Questions."<br /><span class="field-limit"
+									>5&ndash;40 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">FAQ Items</td>
+							<td class="field-desc">
+								Each item has a <strong>Question</strong> and an
+								<strong>Answer</strong>. Add, remove, or reorder as needed.<br /><span
+									class="field-limit"
+									>Up to 12 items &middot; question 15&ndash;100 chars &middot;
+									answer 20&ndash;400 chars</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> Answers are capped at 400 characters. If your
+						answer is getting long, consider splitting it into two separate FAQ
+						items.
+					</div>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Aim for no more than 12 FAQ items. More than
+						that can overwhelm visitors &mdash; focus on the questions you hear
+						most often.
+					</div>
+				</div>
+
+				<div class="subsection" id="contact-form">
+					<h3 class="subsection-heading">Contact Form</h3>
+					<p class="doc-p">
+						The "Questions?" section near the bottom of the page. Controls the
+						heading, description text above the form, and the submit button
+						label.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section heading &mdash; currently "Questions?"<br /><span
+									class="field-limit"
+									>5&ndash;40 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Description Paragraphs</td>
+							<td class="field-desc">
+								Text displayed above the contact form.
+								<strong>The first paragraph is shown in bold.</strong> Use it
+								for your most important message, like your response time
+								policy.<br /><span class="field-limit"
+									>Up to 3 paragraphs &middot; each 40&ndash;200 chars</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Submit Button Text</td>
+							<td class="field-desc">
+								The label on the form's submit button &mdash; currently
+								"Submit."<br /><span class="field-limit"
+									>2&ndash;25 characters</span
+								>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="subsection" id="footer">
+					<h3 class="subsection-heading">Footer</h3>
+					<p class="doc-p">
+						The footer at the bottom of the page. Contains your logo, tagline,
+						location, and legal disclaimer.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Footer Logo</td>
+							<td class="field-desc">
+								The logo image displayed in the footer. Set the hotspot.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Tagline</td>
+							<td class="field-desc">
+								A short descriptor &mdash; currently "Woman Veteran owned and
+								operated business."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Location</td>
+							<td class="field-desc">
+								Your location text &mdash; currently "Located in South County,
+								Rhode Island, USA."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Disclaimer</td>
+							<td class="field-desc">
+								Legal disclaimer text &mdash; currently "This service is NOT for
+								medical diagnosis or treatment. Coaching services are not a
+								replacement for professional medical care."
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="subsection" id="form-submissions">
+					<h3 class="subsection-heading">Form Submissions</h3>
+					<p class="doc-p">
+						Contact form submissions sent from the website. These are
+						<strong>read-only</strong> &mdash; you can view them here, but the
+						main notifications come directly to your email. Submissions are
+						sorted by most recent first.
+					</p>
+					<p class="doc-p">
+						Each submission shows the visitor's Name, Email, Phone, Message, and
+						the date/time it was submitted.
+					</p>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> Form submissions cannot be edited or deleted
+						from the studio. Refer to the email notifications you receive
+						directly for managing inquiries.
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="quick-tips">
+					<div class="section-badge">Reference</div>
+					<h2 class="section-heading">Quick Tips</h2>
+					<div class="tips-grid">
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9989;</span
+							><strong>Always publish</strong>Drafts don't show on the live
+							site. Hit Publish when you're done.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#127919;</span
+							><strong>Set hotspots</strong>On every image &mdash; especially
+							your headshot. Put it on your face.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9986;&#65039;</span
+							><strong>Keep text concise</strong>Short, clear messaging converts
+							visitors into clients. Less is more.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128683;</span
+							><strong>Don't leave fields empty</strong>Blank fields can create
+							awkward gaps on the page.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9201;&#65039;</span
+							><strong>Changes take ~1 minute</strong>After publishing, give it
+							a moment. Hard refresh if needed: <code>Ctrl+Shift+R</code> /
+							<code>Cmd+Shift+R</code>
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9999;&#65039;</span
+							><strong>Inline formatting</strong>In the Introduction section:
+							<code>_underscores_</code> = italic, <code>*asterisks*</code> =
+							bold.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128241;</span
+							><strong>Yellow warnings vs. red errors</strong>Yellow limit
+							warnings are suggestions &mdash; content still publishes. Red
+							errors must be fixed first.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128274;</span
+							><strong>Anchor IDs are locked</strong>In Navigation, only edit
+							the Label &mdash; never the Anchor ID.
+						</div>
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="need-help">
+					<h2 class="section-heading">Need Help?</h2>
+					<p class="section-intro">
+						If you get stuck or something doesn't look right, reach out
+						directly. No bots, no tickets.
+					</p>
+					<div class="help-card">
+						<h3>You talk to me directly.</h3>
+						<p>
+							If something looks off or you're not sure how to do something,
+							just send me a message. I'll get back to you fast.
+						</p>
+						<div class="help-links">
+							<div class="help-link-item">
+								<span class="help-link-label">Email</span
+								><a href="mailto:jordan@latzwebdesign.com"
+									>jordan@latzwebdesign.com</a
+								>
+							</div>
+							<div class="help-link-item">
+								<span class="help-link-label">Website</span
+								><a href="https://latzwebdesign.com" target="_blank"
+									>latzwebdesign.com</a
+								>
+							</div>
+						</div>
+						<div class="help-card-tagline">
+							Latz Web Design &nbsp;&bull;&nbsp; No fluff. Just results.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+			&#9776;
+		</button>
+
+		<script>
+			const sidebar = document.getElementById('sidebar');
+			const overlay = document.getElementById('overlay');
+			const toggle = document.getElementById('mobileToggle');
+
+			toggle.addEventListener('click', function () {
+				sidebar.classList.toggle('open');
+				overlay.classList.toggle('visible');
+				toggle.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+			});
+
+			overlay.addEventListener('click', function () {
+				sidebar.classList.remove('open');
+				overlay.classList.remove('visible');
+				toggle.textContent = '☰';
+			});
+
+			const sections = document.querySelectorAll('[id]');
+			const links = document.querySelectorAll('.sidebar-link');
+
+			const observer = new IntersectionObserver(
+				function (entries) {
+					entries.forEach(function (entry) {
+						if (entry.isIntersecting) {
+							var id = entry.target.id;
+							links.forEach(function (link) {
+								link.classList.toggle(
+									'active',
+									link.getAttribute('href') === '#' + id,
+								);
+							});
+						}
+					});
+				},
+				{ rootMargin: '-20% 0px -70% 0px' },
+			);
+
+			sections.forEach(function (s) {
+				observer.observe(s);
+			});
+
+			links.forEach(function (link) {
+				link.addEventListener('click', function () {
+					sidebar.classList.remove('open');
+					overlay.classList.remove('visible');
+					toggle.textContent = '☰';
+				});
+			});
+		</script>
+	</body>
+</html>
