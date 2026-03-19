@@ -21,17 +21,24 @@ const BiofieldTuning = ({ data }) => {
 		>
 			<div className='grid gap-1 lg:gap-2 px-1.25 lg:px-0.25'>
 				<h2 className='text-white'>{heading}</h2>
-				<div className='grid  gap-1.5 lg:flex lg:gap-4'>
-					{paragraphs?.map((paragraph, index) => (
-						<p
-							key={index}
-							className={`${index === 0 ? 'text-paragraph-lg' : 'text-paragraph-sm '} text-white`}
-						>
-							{paragraph}
+				<div className='flex flex-col gap-1.5 lg:gap-4'>
+					{paragraphs?.[0] && (
+						<p className='text-paragraph-lg text-white lg:w-2/3'>
+							{paragraphs[0]}
 						</p>
-					))}
+					)}
+
+					{paragraphs?.length > 1 && (
+						<div className='grid lg:grid-cols-2 place-items-center gap-1 lg:gap-4'>
+							{paragraphs.slice(1).map((paragraph, index) => (
+								<p key={index + 1} className='text-paragraph-sm text-white'>
+									{paragraph}
+								</p>
+							))}
+						</div>
+					)}
 				</div>
-		<div className='my-2 overflow-hidden'>
+				<div className='my-2 overflow-hidden'>
 					<VideoLibrary data={youtubeVideos} />
 				</div>
 				<div className='max-w-[70rem] 3xl:max-w-[85rem] mx-auto space-y-1 lg:space-y-2'>
