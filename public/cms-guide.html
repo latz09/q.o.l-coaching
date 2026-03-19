@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex, nofollow" />
 		<title>
 			Content Management Guide &mdash; Quality of Life Coaching, LLC
 		</title>
@@ -50,8 +51,6 @@
 				display: flex;
 				min-height: 100vh;
 			}
-
-			/* SIDEBAR */
 			.sidebar {
 				width: var(--sidebar-width);
 				background: var(--navy-dark);
@@ -140,15 +139,11 @@
 			.sidebar-footer a:hover {
 				color: var(--sand);
 			}
-
-			/* MAIN */
 			.main {
 				margin-left: var(--sidebar-width);
 				flex: 1;
 				min-width: 0;
 			}
-
-			/* HEADER */
 			.page-header {
 				background: var(--navy);
 				padding: 64px 64px 56px;
@@ -228,8 +223,6 @@
 				color: rgba(241, 234, 221, 0.7);
 				font-weight: 500;
 			}
-
-			/* PRINT BUTTON */
 			.print-btn {
 				position: absolute;
 				top: 32px;
@@ -254,8 +247,6 @@
 				border-color: rgba(241, 234, 221, 0.6);
 				color: var(--sand);
 			}
-
-			/* CONTENT */
 			.content {
 				padding: 56px 64px 80px;
 				max-width: 860px;
@@ -304,8 +295,6 @@
 				border-radius: 2px;
 				flex-shrink: 0;
 			}
-
-			/* FIELD TABLE */
 			.field-table {
 				width: 100%;
 				border-collapse: collapse;
@@ -346,8 +335,6 @@
 				padding: 1px 8px;
 				font-weight: 500;
 			}
-
-			/* CALLOUTS */
 			.callout {
 				border-radius: var(--radius);
 				padding: 14px 18px;
@@ -374,8 +361,6 @@
 			.callout strong {
 				font-weight: 600;
 			}
-
-			/* STEPS & BULLETS */
 			.steps {
 				counter-reset: steps;
 				list-style: none;
@@ -430,8 +415,6 @@
 				border-radius: 50%;
 				margin-top: 9px;
 			}
-
-			/* MISC */
 			.section-badge {
 				display: inline-flex;
 				align-items: center;
@@ -475,8 +458,6 @@
 				border-top: 1px solid var(--sand-deeper);
 				margin: 48px 0;
 			}
-
-			/* HELP CARD */
 			.help-card {
 				background: var(--navy);
 				border-radius: 10px;
@@ -538,8 +519,6 @@
 				font-size: 14px;
 				color: rgba(241, 234, 221, 0.4);
 			}
-
-			/* TIPS GRID */
 			.tips-grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
@@ -569,12 +548,10 @@
 				text-transform: uppercase;
 				letter-spacing: 0.06em;
 			}
-
-			/* MOBILE */
 			.mobile-toggle {
 				display: none;
 				position: fixed;
-				bottom: 24px;
+				bottom: 80px;
 				right: 24px;
 				z-index: 200;
 				background: var(--navy);
@@ -597,7 +574,6 @@
 				z-index: 99;
 			}
 
-			/* RESPONSIVE */
 			@media (max-width: 900px) {
 				.sidebar {
 					transform: translateX(-100%);
@@ -626,16 +602,53 @@
 				.tips-grid {
 					grid-template-columns: 1fr;
 				}
-				.field-label {
-					width: 140px;
-					white-space: normal;
-				}
 				.print-btn {
 					display: none;
 				}
 			}
 
-			/* PRINT */
+			@media (max-width: 600px) {
+				.page-header {
+					padding: 32px 20px 48px;
+				}
+				.content {
+					padding: 28px 20px 60px;
+				}
+				.header-title {
+					font-size: 28px;
+				}
+				.field-table,
+				.field-table tbody,
+				.field-table tr {
+					display: block;
+				}
+				.field-table tr {
+					margin-bottom: 12px;
+					border: 1px solid var(--sand-deeper);
+					border-radius: var(--radius);
+					overflow: hidden;
+				}
+				.field-table tr:not(:last-child) {
+					border-bottom: 1px solid var(--sand-deeper);
+					margin-bottom: 12px;
+				}
+				.field-label {
+					display: block;
+					width: 100%;
+					border-right: none;
+					border-bottom: 1px solid var(--sand-deeper);
+					white-space: normal;
+					font-size: 12px;
+					padding: 8px 12px;
+				}
+				.field-desc {
+					display: block;
+					width: 100%;
+					padding: 10px 12px;
+					font-size: 13.5px;
+				}
+			}
+
 			@media print {
 				.sidebar,
 				.sidebar-overlay,
@@ -1356,11 +1369,10 @@
 						<tr>
 							<td class="field-label">Credentials</td>
 							<td class="field-desc">
-								Your listed credentials displayed as a styled list. Each
-								credential has a <strong>Title</strong> (e.g., "Certified
-								Physician Assistant, NCCPA") and a
-								<strong>Year/Range</strong> (e.g., "2008&ndash;present").<br /><span
-									class="field-limit"
+								Your listed credentials as a styled list. Each has a
+								<strong>Title</strong> (e.g., "Certified Physician Assistant,
+								NCCPA") and a <strong>Year/Range</strong> (e.g.,
+								"2008&ndash;present").<br /><span class="field-limit"
 									>Up to 8 credentials &middot; title 5&ndash;60 chars</span
 								>
 							</td>
