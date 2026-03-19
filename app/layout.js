@@ -41,7 +41,14 @@ export const metadata = {
 			'Specialized coaching for medical providers, healthcare professionals, and caregivers — by a practicing PA-C. Remote sessions with Elizabeth Mann, PA-C.',
 		url: SITE_URL,
 		siteName: 'Quality of Life Coaching',
-		
+		images: [
+			{
+				url: `${SITE_URL}/opengraph-image.png`,
+				width: 1200,
+				height: 630,
+				alt: 'Quality of Life Coaching',
+			},
+		],
 		type: 'website',
 	},
 	twitter: {
@@ -50,7 +57,7 @@ export const metadata = {
 			'Quality of Life Coaching | Coaching for Medical Providers by a Medical Provider',
 		description:
 			'Specialized coaching for medical providers, healthcare professionals, and caregivers — by a practicing PA-C. Remote sessions with Elizabeth Mann, PA-C.',
-	
+		images: [`${SITE_URL}/opengraph-image.png`],
 	},
 };
 
