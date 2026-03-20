@@ -1,7 +1,10 @@
+# *
 User-agent: *
 Allow: /
-Disallow: /opengraph-image.jpg
+Disallow: /cms-guide
 
-Host: https://www.qolc.latzwebdesign.com
+# Host
+Host: https://www.qolcoaching.com/
 
-Sitemap: https://www.qolc.latzwebdesign.com/sitemap.xml
+# Sitemaps
+Sitemap: https://www.qolcoaching.com/sitemap.xml

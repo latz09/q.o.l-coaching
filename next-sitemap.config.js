@@ -1,4 +1,4 @@
-const SITE_URL = 'https://www.qolc.latzwebdesign.com';
+const SITE_URL = 'https://www.qolcoaching.com/';
 
 module.exports = {
   siteUrl: SITE_URL,
