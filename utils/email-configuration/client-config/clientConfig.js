@@ -48,7 +48,7 @@ export const clientConfig = {
 		},
 		{
 			name: 'message',
-			label: 'How can we help?',
+			label: 'Received Message',
 			required: true,
 			type: 'textarea',
 		},
